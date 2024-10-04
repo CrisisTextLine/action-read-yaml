@@ -66,6 +66,7 @@ async function main() {
     fs.readFile(configData, "utf8", (err, data) => {
       if (err) {
         console.error(err);
+        core.setFailed(err.message)
         return;
       }
 
