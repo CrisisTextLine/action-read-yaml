@@ -1,0 +1,30 @@
+{
+  "name": "read_yaml_action",
+  "version": "1.0.1",
+  "description": "Github action to read YAML file",
+  "main": "./src/index.js",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "bundle": "npm run format:write && npm run package",
+    "format:write": "npx prettier --write .",
+    "format:check": "npx prettier --check .",
+    "package": "npx ncc build src/index.js -o dist --source-map --license licenses.txt",
+    "package:watch": "npm run package -- --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "CrisisTextLine (original credit to Pietro Bolcato)",
+  "license": "ISC",
+  "dependencies": {
+    "@actions/core": "^1.10.1",
+    "@actions/github": "^5.1.1",
+    "@vercel/ncc": "^0.38.1",
+    "make-coverage-badge": "^1.2.0",
+    "js-yaml": "^4.1.0",
+    "prettier": "^3.3.3"
+  }
+}

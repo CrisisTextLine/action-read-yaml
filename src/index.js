@@ -44,7 +44,7 @@ const replaceVariables = (value, resolved) => {
       }
 
       value = value.replace(match[0], resolved[varName]);
-      match = value.match(/\$\(([^\)]+)\)/);
+      match = value.match(/\$\(([^)]+)\)/);
     }
 
     return value;
@@ -69,12 +69,10 @@ async function main() {
         return;
       }
 
-      if ( keyPathPattern )
-      {
-         core.info(`\n\nkey-path-pattern is :: ${keyPathPattern}`);
-         core.info("\n\n");
+      if (keyPathPattern) {
+        core.info(`\n\nkey-path-pattern is :: ${keyPathPattern}`);
+        core.info("\n\n");
       }
-
 
       console.log("Read data:\n", data);
 
@@ -85,8 +83,8 @@ async function main() {
       const resolveFields = (obj, prefix = "") => {
         for (const [key, value] of Object.entries(obj)) {
           if (typeof value === "object" && value !== null) {
-            if(Array.isArray(value)) {
-              core.setOutput(prefix+key+".array", value);
+            if (Array.isArray(value)) {
+              core.setOutput(prefix + key + ".array", value);
             }
             resolveFields(value, prefix + key + ".");
           } else {
@@ -97,37 +95,31 @@ async function main() {
 
       resolveFields(configYaml);
 
-      const reKPP = RegExp(keyPathPattern,"g");
-      const reEnvVarPattern = RegExp('[\.|\-]',"g");
+      const reKPP = RegExp(keyPathPattern, "g");
+      const reEnvVarPattern = RegExp("[.|-]", "g");
 
       Object.entries(resolved).map((val) => {
         const key = val[0];
         const value = val[1];
-        if ( keyPathPattern )
-        {
-            if(key.match(reKPP))
-            {
-                var k=key.replace(reKPP,'');
-                core.info(`${k} : ${value}`);
-                core.setOutput(k,value);
-                if ( envVarPrefix )
-                {
-                    k=k.replace(reEnvVarPattern,"_");
-                    core.info(`${envVarPrefix}_${k}=${value}`);
-                    core.exportVariable(`${envVarPrefix}_${k}`,value);
-                }
+        if (keyPathPattern) {
+          if (key.match(reKPP)) {
+            var k = key.replace(reKPP, "");
+            core.info(`${k} : ${value}`);
+            core.setOutput(k, value);
+            if (envVarPrefix) {
+              k = k.replace(reEnvVarPattern, "_");
+              core.info(`${envVarPrefix}_${k}=${value}`);
+              core.exportVariable(`${envVarPrefix}_${k}`, value);
             }
-        }
-        else
-        {
-            core.info(`${key} : ${value}`);
-            core.setOutput(key,value);
-            if ( envVarPrefix )
-            {
-                k=key.replace(reEnvVarPattern,"_");
-                core.info(`${envVarPrefix}_${k}=${value}`);
-                core.exportVariable(`${envVarPrefix}_${k}`,value);
-            }
+          }
+        } else {
+          core.info(`${key} : ${value}`);
+          core.setOutput(key, value);
+          if (envVarPrefix) {
+            k = key.replace(reEnvVarPattern, "_");
+            core.info(`${envVarPrefix}_${k}=${value}`);
+            core.exportVariable(`${envVarPrefix}_${k}`, value);
+          }
         }
       });
     });
@@ -136,4 +128,4 @@ async function main() {
   }
 }
 
-main();
+main().then((r) => console.log("Action completed successfully"));

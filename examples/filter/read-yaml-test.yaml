@@ -12,7 +12,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: read-yaml-file-1
-        uses: pietrobolcato/action-read-yaml@main
+        uses: CrisisTextLine/action-read-yaml@1.0.1
         id: deployments
         with:
           config: ${{ github.workspace }}/examples/filter/config_example.yaml
@@ -29,9 +29,8 @@ jobs:
           echo deployment source libs: $myEnv_source_libs
           echo deployment source entry: $myEnv_source_entry
 
-
       - name: read-yaml-file-2
-        uses: pietrobolcato/action-read-yaml@main
+        uses: CrisisTextLine/action-read-yaml@1.0.1
         id: permissions
         with:
           config: ${{ github.workspace }}/examples/filter/config_example.yaml
