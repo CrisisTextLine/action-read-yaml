@@ -65,8 +65,7 @@ async function main() {
 
     fs.readFile(configData, "utf8", (err, data) => {
       if (err) {
-        console.error(err);
-        core.setFailed(err.message)
+        core.setFailed(`Failed to read file: ${err.message}`);
         return;
       }
 
@@ -129,4 +128,4 @@ async function main() {
   }
 }
 
-main().then((r) => console.log("Action completed successfully"));
+main();
