@@ -1,6 +1,6 @@
-name: "YAML Read"
-description: "This action reads a YAML configuration files, with support to variable interpolation"
-author: "pietrobolcato"
+name: "Read YAML"
+description: "This action reads a YAML configuration files, with support for variable interpolation."
+author: "CrisisTextLine"
 branding:
   icon: box
   color: blue
