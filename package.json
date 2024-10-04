@@ -1,6 +1,6 @@
 {
   "name": "read_yaml_action",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Github action to read YAML file",
   "main": "./src/index.js",
   "exports": {

@@ -73,7 +73,7 @@ The action reads the yaml file as following:
 >         uses: actions/checkout@v3
 >
 >       - name: read-yaml-file
->         uses: CrisisTextLine/action-read-yaml@1.0.1
+>         uses: CrisisTextLine/action-read-yaml@1.0.2
 >         id: read_action_js
 >         with:
 >           config: ${{ github.workspace }}/examples/config_example.yaml
@@ -165,7 +165,7 @@ The action reads the yaml file as following:
 >         uses: actions/checkout@v3
 >
 >       - name: read-yaml-file-1
->         uses: CrisisTextLine/action-read-yaml@1.0.1
+>         uses: CrisisTextLine/action-read-yaml@1.0.2
 >         id: deployments
 >         with:
 >           config: ${{ github.workspace }}/examples/filter/config_example.yaml
@@ -186,7 +186,7 @@ The action reads the yaml file as following:
 >           echo deployment source entry: $myEnv_source_entry
 >
 >       - name: read-yaml-file-2
->         uses: CrisisTextLine/action-read-yaml@1.0.1
+>         uses: CrisisTextLine/action-read-yaml@1.0.2
 >         id: permissions
 >         with:
 >           config: ${{ github.workspace }}/examples/filter/config_example.yaml
